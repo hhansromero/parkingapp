@@ -9,18 +9,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="180dp"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo_proyecto">
+                android:src="@drawable/logo_parking_app">
 
             </ImageView>
         </LinearLayout>

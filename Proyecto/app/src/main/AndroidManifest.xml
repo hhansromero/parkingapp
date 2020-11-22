@@ -34,7 +34,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".MainRegistroUsuario"
-            android:label="Registrar nuevo usuario en Parking App" />
+            android:parentActivityName=".LoginActivity"/>
         <activity
             android:name=".RegistrarEmpresaFBActivity"
             android:parentActivityName=".MantOpciones" />

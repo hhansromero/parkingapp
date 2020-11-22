@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
@@ -52,7 +53,11 @@ public class LoginActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validarUsuario();
+                if (txtUser.getText().toString().equals("") || txtPassword.getText().toString().equals("")) {
+                    validarRequeridos();
+                } else {
+                    loguearUsuario();
+                }
             }
         });
 
@@ -65,7 +70,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void validarUsuario() {
+    private void validarRequeridos() {
+        if(txtUser.getText().toString().equals("")){
+            txtUser.setError("Campo requerido");
+        }
+        if (txtPassword.getText().toString().equals("")) {
+            txtPassword.setError("Campo requerido");
+        }
+    }
+
+    private void loguearUsuario() {
         reference.child("Persona").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -87,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (tipoUsuario.equals("C")) {
                     intent = new Intent(LoginActivity.this, MainMenuUsuario.class);
                     startActivity(intent);
+                } else if (tipoUsuario.equals("")) {
+                    Toast.makeText(LoginActivity.this, "Usuario o Password incorrectos", Toast.LENGTH_SHORT).show();
                 }
                 tipoUsuario="";
 

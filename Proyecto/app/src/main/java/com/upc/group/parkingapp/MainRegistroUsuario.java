@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,8 +23,9 @@ import java.util.UUID;
 public class MainRegistroUsuario extends AppCompatActivity {
 
     FloatingActionButton Log_button;
-    EditText txtUsuario, txtNombres, txtApellidos, txtDNI,txtEmail, txtPassword, txtCelular;
+    EditText txtUsuario, txtNombres, txtApellidos, txtDNI, txtEmail, txtPassword, txtCelular;
     Spinner spTipo;
+    CheckBox cbAcepto;
     Button btnRegistrar;
 
     FirebaseDatabase db;
@@ -32,10 +35,8 @@ public class MainRegistroUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_registro_usuario);
-       asignarReferencias();
+        asignarReferencias();
     }
-
-    //HOLA este cambio.
 
    private void asignarReferencias() {
 
@@ -47,11 +48,11 @@ public class MainRegistroUsuario extends AppCompatActivity {
        txtEmail = findViewById(R.id.txtEmail);
        txtPassword = findViewById(R.id.txtPassword);
        spTipo = findViewById(R.id.spTipo);
+       cbAcepto = findViewById(R.id.cbAcepto);
        Log_button = findViewById(R.id.log_button);
        btnRegistrar=findViewById(R.id.btnRegistrar);
 
        inicializarFirebase();
-       registrarUsuario();
 
        Log_button.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -68,6 +69,17 @@ public class MainRegistroUsuario extends AppCompatActivity {
            }
        });
 
+       cbAcepto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if (!cbAcepto.isChecked()) {
+                   btnRegistrar.setEnabled(false);
+               } else {
+                   btnRegistrar.setEnabled(true);
+               }
+           }
+       });
+
    }
 
     private void registrarUsuario(){
@@ -80,7 +92,6 @@ public class MainRegistroUsuario extends AppCompatActivity {
         p.setDni(txtDNI.getText().toString());
         p.setCelular(txtCelular.getText().toString());
         p.setEmail(txtEmail.getText().toString());
-
         String tipo="";
         if (spTipo.getSelectedItem().toString().equals("Administrador")) {
             tipo = "A";
@@ -90,66 +101,51 @@ public class MainRegistroUsuario extends AppCompatActivity {
         p.setTipoUsuario(tipo);
         p.setPassword(txtPassword.getText().toString());
 
+        if (validarFormulario() == true) {
+            reference.child("Persona").child(p.getId()).setValue(p);
+            Toast.makeText(this, "¡Usuario agregado en Parkink App!", Toast.LENGTH_SHORT).show();
 
-        if (txtUsuario.getText().toString().equals("")){
-           // Toast.makeText(this, "Ingrese el usuario", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainRegistroUsuario.this, LoginActivity.class);
+            startActivity(intent);
         }
-        else {
-
-
-            if (validacion()==true) {
-                reference.child("Persona").child(p.getId()).setValue(p);
-                Toast.makeText(this, "¡Usuario agregado en Parkink App!", Toast.LENGTH_SHORT).show();
-
-                /*txtUsuario.setText("");
-                txtNombres.setText("");
-                txtApellidos.setText("");
-                txtDNI.setText("");
-                txtCelular.setText("");
-                txtEmail.setText("");
-                spTipo.
-                txtPassword.setText("");*/
-
-                Intent intent = new Intent(MainRegistroUsuario.this, LoginActivity.class);
-                startActivity(intent);
-
-            }
-        }
-
-        /*
-
-        if(usuario.equals("")|| email.equals("")){
-            validacion();
-        } else {
-            String  url="";
-
-        }*/
 
     }
 
-   private Boolean validacion(){
-        Boolean respuesta=true;
+   private boolean validarFormulario(){
+       boolean isValid = true;
 
-        if(txtUsuario.getText().toString().equals("")|| txtUsuario.getText().equals(null)|| txtUsuario.getText().equals("null")){
-           // txtUsuario.setError("Ingrese nombre usuario");
-
-            Toast.makeText(this.getApplicationContext(), "¡Ingrese nombre usuario!", Toast.LENGTH_SHORT).show();
-
-            respuesta=false;
-
+        if (txtUsuario.getText().toString().equals("")) {
+            txtUsuario.setError("Campo requerido");
+            isValid=false;
         }
-
-
-       return respuesta;
+       if (txtPassword.getText().toString().equals("")) {
+           txtPassword.setError("Campo requerido");
+           isValid=false;
+       }
+       if (txtNombres.getText().toString().equals("")) {
+           txtNombres.setError("Campo requerido");
+           isValid=false;
+       }
+       if (txtApellidos.getText().toString().equals("")) {
+           txtApellidos.setError("Campo requerido");
+           isValid=false;
+       }
+       if (txtDNI.getText().toString().equals("")) {
+           txtDNI.setError("Campo requerido");
+           isValid=false;
+       }
+       /*
+       if (spTipo.getSelectedItem().toString().equals("")) {
+       }
+       */
+       return isValid;
    }
 
 
     private void inicializarFirebase() {
-
         FirebaseApp.initializeApp(this);
         db = FirebaseDatabase.getInstance();
         reference = db.getReference();
-
     }
 }
 
