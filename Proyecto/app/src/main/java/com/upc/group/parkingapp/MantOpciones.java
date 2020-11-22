@@ -24,7 +24,7 @@ public class MantOpciones extends AppCompatActivity {
         btnMantOpciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MantOpciones.this, RegistrarEmpresaFBActivity.class);
+                Intent intent = new Intent(MantOpciones.this, ListarEmpresasFBActivity.class);
                 startActivity(intent);
             }
         });

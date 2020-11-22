@@ -103,7 +103,7 @@ public class MainRegistroUsuario extends AppCompatActivity {
 
         if (validarFormulario() == true) {
             reference.child("Persona").child(p.getId()).setValue(p);
-            Toast.makeText(this, "¡Usuario agregado en Parkink App!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "¡Usuario registrado en Parkink App!", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(MainRegistroUsuario.this, LoginActivity.class);
             startActivity(intent);

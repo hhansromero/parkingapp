@@ -3,7 +3,9 @@ package com.upc.group.parkingapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,7 +33,7 @@ public class RegistrarEmpresaFBActivity extends AppCompatActivity {
     CheckBox checkBoxTermCondiciones;
     Spinner spHorarios;
 
-    Button btnRegistrarEmpresa, btnEliminarEmpresa;
+    Button btnRegistrarEmpresa;
     FirebaseDatabase db;
     DatabaseReference reference;
 
@@ -56,54 +58,26 @@ public class RegistrarEmpresaFBActivity extends AppCompatActivity {
         editTextTotalEst = findViewById(R.id.editTextTotalEst);
         checkBoxTermCondiciones = findViewById(R.id.checkBoxTermCondiciones);
         btnRegistrarEmpresa = findViewById(R.id.btnRegistrarEmpresa);
-        btnEliminarEmpresa = findViewById(R.id.btnEliminarEmpresa);
         spHorarios = findViewById(R.id.spHorarios);
 
         inicializarFirebase();
-        listarDatos();
 
-
-            btnRegistrarEmpresa.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    /*boolean result = Boolean.parseBoolean(checkBoxTermCondiciones.getText().toString());
-                    if (result==true){*/
-                    registrarEmpresa();
-                    /*}
-                    else {
-                        Toast.makeText(RegistrarEmpresaFBActivity.this, "Debe aceptar los términos y condiciones", Toast.LENGTH_SHORT).show();
-
-                    }*/
-                }
-            });
-
-        btnEliminarEmpresa.setOnClickListener(new View.OnClickListener() {
+        btnRegistrarEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                eliminarEmpresa();
-            }
-        });
-    }
 
-    private void listarDatos() {
-        reference.child("Empresa").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listaEmpresa.clear();
-                for(DataSnapshot item:snapshot.getChildren()){
-                    Empresa e = item.getValue(Empresa.class);
-                    listaEmpresa.add(e);
+                if (validarFormulario()==true) {
+                    registrarEmpresa();
+                    Toast.makeText(RegistrarEmpresaFBActivity.this, "¡Empresa registrada en Parkink App!", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(RegistrarEmpresaFBActivity.this, ListarEmpresasFBActivity.class);
+                    startActivity(intent);
                 }
-                //adapter = new ArrayAdapter<>(FirebaseActivity.this, android.R.layout.simple_list_item_1,listaEmpresa);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-    }
 
+    }
 
     private void registrarEmpresa() {
         Empresa e = new Empresa();
@@ -117,8 +91,8 @@ public class RegistrarEmpresaFBActivity extends AppCompatActivity {
         e.setTotalEst(Integer.parseInt(editTextTotalEst.getText().toString()));
         e.setHorario(spHorarios.getSelectedItem().toString());
         e.setTermCondiciones(Boolean.parseBoolean(checkBoxTermCondiciones.getText().toString()));
+
         reference.child("Empresa").child(e.getId()).setValue(e);
-        Toast.makeText(this, "Empresa registrada", Toast.LENGTH_SHORT).show();
         editTextRUC.setText("");
         editTextNombreLocal.setText("");
         editTextRepresentante.setText("");
@@ -127,18 +101,25 @@ public class RegistrarEmpresaFBActivity extends AppCompatActivity {
         spHorarios.setSelected(false);
         checkBoxTermCondiciones.setChecked(true);
 
-
     }
 
-    private void eliminarEmpresa() {
-        Empresa e = new Empresa();
-        Estacionamiento s = new Estacionamiento();
-    }
+    private boolean validarFormulario() {
+        boolean isValid = true;
 
-    private void validacion() {
-        if (editTextRUC.getText().toString().equals("")){
-
+        if (editTextRUC.getText().toString().equals("")) {
+            editTextRUC.setError("Campo requerido");
+            isValid=false;
         }
+        if (editTextNombreLocal.getText().toString().equals("")) {
+            editTextNombreLocal.setError("Campo requerido");
+            isValid=false;
+        }
+        if (editTextRepresentante.getText().toString().equals("")) {
+            editTextRepresentante.setError("Campo requerido");
+            isValid=false;
+        }
+
+        return isValid;
     }
 
     private void inicializarFirebase() {
