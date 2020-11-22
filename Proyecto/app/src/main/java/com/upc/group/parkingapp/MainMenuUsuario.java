@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,8 +32,14 @@ public class MainMenuUsuario extends AppCompatActivity {
                     intent = new Intent(MainMenuUsuario.this, EstOpciones.class);
                     startActivity(intent);
                 }
+                else if (menuItem.getItemId() == R.id.menu_3){
+                    intent = new Intent(MainMenuUsuario.this, MainPerfilCliente.class);
+                    startActivity(intent);
+
+                }
 
                 return false;
+
             }
         });
     }
