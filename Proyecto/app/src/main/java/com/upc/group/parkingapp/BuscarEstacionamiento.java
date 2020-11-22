@@ -7,8 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class BuscarEstacionamiento extends AppCompatActivity {
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+public class BuscarEstacionamiento extends AppCompatActivity implements OnMapReadyCallback {
+
+    private MapView mMapView;
     Button btnVerDetalleSede;
 
     @Override
@@ -16,6 +23,10 @@ public class BuscarEstacionamiento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_estacionamiento);
         asignarReferencias();
+
+        mMapView = (MapView) findViewById(R.id.mapViewBuscarEst);
+        mMapView.onCreate(savedInstanceState);
+        mMapView.getMapAsync(this);
     }
 
     private void asignarReferencias() {
@@ -28,5 +39,15 @@ public class BuscarEstacionamiento extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
