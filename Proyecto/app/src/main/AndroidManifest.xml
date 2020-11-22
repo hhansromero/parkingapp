@@ -49,7 +49,7 @@
             android:name=".MantOpciones"
             android:parentActivityName=".MainMenuAdmin" />
 
-        <activity android:name=".MainPerfilCliente" ></activity>
+        <activity android:name=".MainPerfilCliente" android:parentActivityName=".MainMenuUsuario"></activity>
 
 
     </application>
