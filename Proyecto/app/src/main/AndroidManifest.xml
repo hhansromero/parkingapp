@@ -24,6 +24,8 @@
             android:parentActivityName=".MainMenuUsuario" />
         <activity android:name=".MainMenuAdmin" />
         <activity android:name=".MainMenuUsuario" />
+
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +34,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
         <activity
             android:name=".MainRegistroUsuario"
             android:parentActivityName=".LoginActivity"/>
@@ -41,6 +44,10 @@
         <activity
             android:name=".MantOpciones"
             android:parentActivityName=".MainMenuAdmin" />
+
+        <activity android:name=".MainPerfilCliente" ></activity>
+
+
     </application>
 
 </manifest>

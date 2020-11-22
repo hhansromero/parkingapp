@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainPerfilCliente">
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="55dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehículo:"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="55dp"
+                android:textStyle="bold"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="25dp"
+                />
+
+
+            <EditText
+                android:id="@+id/txtPlaca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:ems="10"
+                android:hint="Ingrese su placa"
+                android:layout_marginStart="55dp"
+                android:layout_marginEnd="55dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/txtModelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginEnd="55dp"
+                android:ems="10"
+                android:hint="Modelo de auto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/txtFoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginEnd="220dp"
+                android:ems="10"
+                android:hint="Foto de perfil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="140dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginEnd="100dp"
+                app:srcCompat="@drawable/ic_photo" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notificaciones:"
+                android:layout_marginTop="200dp"
+                android:layout_marginStart="55dp"
+                android:textStyle="bold"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="25dp"/>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio de sesión:"
+                android:layout_marginStart="55dp"
+                android:layout_marginEnd="220dp"
+                android:layout_marginTop="250dp"
+                android:textSize="18dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_marginStart="200dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="250dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SMS"
+                android:layout_marginStart="280dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="250dp"/>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15 minutos antes:"
+                android:layout_marginStart="55dp"
+                android:layout_marginEnd="200dp"
+                android:layout_marginTop="280dp"
+                android:textSize="18dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_marginStart="200dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="280dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SMS"
+                android:layout_marginStart="280dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="280dp"/>
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="News:"
+                android:layout_marginStart="55dp"
+                android:layout_marginEnd="200dp"
+                android:layout_marginTop="310dp"
+                android:textSize="18dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_marginStart="200dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="310dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBox6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SMS"
+                android:layout_marginStart="280dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="310dp"/>
+
+            <Button
+                android:id="@+id/btnGuarda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="380dp"
+                android:layout_marginEnd="55dp"
+                android:text="Guardar"
+                android:textSize="22sp"
+                android:textColor="@color/buttonLetter"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkBox6" />
+
+        </FrameLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/botonNavegacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemTextColor="#FFFFFF"
+            app:itemIconTint="#FFFFFF"
+            app:menu="@menu/main_menu_usuario">
+
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
