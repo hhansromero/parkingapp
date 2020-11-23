@@ -11,6 +11,8 @@ public class Empresa {
     private int totalEst = 0;
     private String horario;
     private boolean termCondiciones = true;
+    private String latitud;
+    private String longitud;
 
     public Empresa() {
     }
@@ -85,5 +87,21 @@ public class Empresa {
 
     public void setTermCondiciones(boolean termCondiciones) {
         this.termCondiciones = termCondiciones;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
     }
 }
