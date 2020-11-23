@@ -34,7 +34,7 @@ public class BuscarEstacionamiento extends AppCompatActivity {
                 ArrayList<Empresa> empresaList = new ArrayList<>();
 
                 Intent intent = new Intent(BuscarEstacionamiento.this, MapEmpresasActivity.class);
-                intent.putParcelableArrayListExtra("empresas", (ArrayList<? extends Parcelable>) empresaList);
+                //intent.putParcelableArrayListExtra("empresas", (ArrayList<? extends Parcelable>) empresaList);
 
                 startActivity(intent);
             }
