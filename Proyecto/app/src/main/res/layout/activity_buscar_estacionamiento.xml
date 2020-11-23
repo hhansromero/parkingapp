@@ -41,6 +41,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="100dp"
         android:text="Buscar"
+        android:textAllCaps="false"
         android:background="@color/colorPrimary"
         android:textColor="@color/buttonLetter"
         android:textSize="22dp"
@@ -57,25 +58,12 @@
         android:layout_marginEnd="24dp"
         android:background="@color/colorPrimary"
         android:text="Ver Detalle de Sede"
+        android:textAllCaps="false"
         android:textColor="@color/buttonLetter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnBuscar" />
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapViewBuscarEst"
-        android:layout_width="315dp"
-        android:layout_height="383dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVerDetalleSede"
-        app:layout_constraintVertical_bias="0.785" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

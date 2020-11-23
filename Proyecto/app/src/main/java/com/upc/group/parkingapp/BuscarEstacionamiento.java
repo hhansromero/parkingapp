@@ -4,34 +4,41 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.upc.group.parkingapp.modelos.Empresa;
 
-public class BuscarEstacionamiento extends AppCompatActivity implements OnMapReadyCallback {
+import java.util.ArrayList;
 
-    private MapView mMapView;
-    Button btnVerDetalleSede;
+public class BuscarEstacionamiento extends AppCompatActivity {
+
+    Button btnBuscar, btnVerDetalleSede;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_estacionamiento);
         asignarReferencias();
-
-        mMapView = (MapView) findViewById(R.id.mapViewBuscarEst);
-        mMapView.onCreate(savedInstanceState);
-        mMapView.getMapAsync(this);
     }
 
     private void asignarReferencias() {
+        btnBuscar = findViewById(R.id.btnBuscar);
         btnVerDetalleSede = findViewById(R.id.btnVerDetalleSede);
 
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ArrayList<Empresa> empresaList = new ArrayList<>();
+
+                Intent intent = new Intent(BuscarEstacionamiento.this, MapEmpresasActivity.class);
+                intent.putParcelableArrayListExtra("empresas", (ArrayList<? extends Parcelable>) empresaList);
+
+                startActivity(intent);
+            }
+        });
         btnVerDetalleSede.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,15 +46,5 @@ public class BuscarEstacionamiento extends AppCompatActivity implements OnMapRea
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }

@@ -3,6 +3,7 @@
     package="com.upc.group.parkingapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,11 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBxdxTdpZtKWrkQuZDfkw3xZmp6dzv6UHY"/>
-
-        <activity android:name=".ListarEmpresasFBActivity"></activity>
+        <activity android:name=".MapEmpresasActivity"></activity>
+        <activity android:name=".ListarEmpresasFBActivity" />
         <activity
             android:name=".VerDetalleSede"
             android:parentActivityName=".BuscarEstacionamiento" />
@@ -28,8 +26,6 @@
             android:parentActivityName=".MainMenuUsuario" />
         <activity android:name=".MainMenuAdmin" />
         <activity android:name=".MainMenuUsuario" />
-
-
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,20 +34,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-
         <activity
             android:name=".MainRegistroUsuario"
-            android:parentActivityName=".LoginActivity"/>
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".RegistrarEmpresaFBActivity"
             android:parentActivityName=".MantOpciones" />
         <activity
             android:name=".MantOpciones"
             android:parentActivityName=".MainMenuAdmin" />
+        <activity
+            android:name=".MainPerfilCliente"
+            android:parentActivityName=".MainMenuUsuario" />
 
-        <activity android:name=".MainPerfilCliente" android:parentActivityName=".MainMenuUsuario"></activity>
-
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>
