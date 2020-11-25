@@ -22,7 +22,7 @@ import java.util.List;
 
 public class BuscarEstacionamiento extends AppCompatActivity {
 
-    Button btnBuscar, btnVerDetalleSede;
+    Button btnBuscar;
     FirebaseDatabase db;
     DatabaseReference reference;
     List<Empresa> empresas;
@@ -38,7 +38,6 @@ public class BuscarEstacionamiento extends AppCompatActivity {
 
     private void asignarReferencias() {
         btnBuscar = findViewById(R.id.btnBuscar);
-        btnVerDetalleSede = findViewById(R.id.btnVerDetalleSede);
 
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,13 +47,6 @@ public class BuscarEstacionamiento extends AppCompatActivity {
 
                 Intent intent = new Intent(BuscarEstacionamiento.this, MapEmpresasActivity.class);
                 intent.putExtra("jsonEmpresas", jsonEmpresas);
-                startActivity(intent);
-            }
-        });
-        btnVerDetalleSede.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BuscarEstacionamiento.this, VerDetalleSede.class);
                 startActivity(intent);
             }
         });
