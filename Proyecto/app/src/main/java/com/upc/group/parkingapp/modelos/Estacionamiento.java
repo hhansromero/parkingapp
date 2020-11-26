@@ -12,8 +12,17 @@ public class Estacionamiento {
     private double profundidad;
     private double base;
     private double tarifa;
+    private String empresaId;
 
     public Estacionamiento() {
+    }
+
+    public String getEmpresaId() {
+        return empresaId;
+    }
+
+    public void setEmpresaId(String empresaId) {
+        this.empresaId = empresaId;
     }
 
     public String getId() {

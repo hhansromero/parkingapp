@@ -32,10 +32,25 @@ public class VerDetalleSede extends AppCompatActivity {
         inicializarFirebase();
         asignarReferencias();
         getEstacionamientos();
+    }
 
+    private void asignarReferencias() {
+        lstEstacionamientos = findViewById(R.id.lstEstacionamientos);
+
+        lstEstacionamientos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Estacionamiento objEst = (Estacionamiento) parent.getAdapter().getItem(position);
+            }
+        });
     }
 
     private void getEstacionamientos() {
+
+        String empresaId = getIntent().getStringExtra("empresaId");
+        System.out.println(empresaId);
+
+
         // Construct the data source - TEMPORAL
         ArrayList<Estacionamiento> arrayOfEsts = new ArrayList<Estacionamiento>();
         Estacionamiento est1 = new Estacionamiento();
@@ -61,16 +76,6 @@ public class VerDetalleSede extends AppCompatActivity {
         EstacionamientosAdapter adapter = new EstacionamientosAdapter(this, arrayOfEsts);
         // Attach the adapter to a ListView
         lstEstacionamientos.setAdapter(adapter);
-    }
-
-    private void asignarReferencias() {
-        lstEstacionamientos = findViewById(R.id.lstEstacionamientos);
-        lstEstacionamientos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Estacionamiento objEst = (Estacionamiento) parent.getAdapter().getItem(position);
-            }
-        });
     }
 
     private void inicializarFirebase() {
