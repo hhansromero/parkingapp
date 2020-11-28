@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     FloatingActionButton add_button;
     DatabaseReference reference;
     String tipoUsuario="";
+    String personaId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (p.getUsuario().equals(txtUser.getText().toString())
                             && p.getPassword().equals(txtPassword.getText().toString())) {
                         tipoUsuario = p.getTipoUsuario();
+                        personaId = p.getId();
                         break;
                     }
                 }
@@ -100,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (tipoUsuario.equals("C")) {
                     intent = new Intent(LoginActivity.this, MainMenuUsuario.class);
+                    intent.putExtra("personaId", personaId);
                     startActivity(intent);
                 } else if (tipoUsuario.equals("")) {
                     Toast.makeText(LoginActivity.this, "Usuario o Password incorrectos", Toast.LENGTH_SHORT).show();

@@ -30,6 +30,7 @@ public class EstOpciones extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EstOpciones.this, BuscarEstacionamiento.class);
+                intent.putExtra("personaId", getIntent().getStringExtra("personaId"));
                 startActivity(intent);
             }
         });

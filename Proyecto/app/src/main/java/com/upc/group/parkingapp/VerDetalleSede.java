@@ -1,22 +1,26 @@
 package com.upc.group.parkingapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.upc.group.parkingapp.adapters.EstacionamientosAdapter;
 import com.upc.group.parkingapp.modelos.Empresa;
 import com.upc.group.parkingapp.modelos.Estacionamiento;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class VerDetalleSede extends AppCompatActivity {
 
@@ -24,6 +28,7 @@ public class VerDetalleSede extends AppCompatActivity {
     DatabaseReference reference;
 
     ListView lstEstacionamientos;
+    TextView txtNombreEmpresa, txtRepresentanteEmpresa, txtDireccion, txtNiveles, txtHorario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,46 +41,75 @@ public class VerDetalleSede extends AppCompatActivity {
 
     private void asignarReferencias() {
         lstEstacionamientos = findViewById(R.id.lstEstacionamientos);
+        txtNombreEmpresa = findViewById(R.id.txtNombreEmpresa);
+        txtRepresentanteEmpresa = findViewById(R.id.txtRepresentanteEmpresa);
+        txtNiveles = findViewById(R.id.txtNiveles);
+        txtHorario = findViewById(R.id.txtHorario);
+        txtDireccion = findViewById(R.id.txtDireccion);
 
         lstEstacionamientos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Estacionamiento objEst = (Estacionamiento) parent.getAdapter().getItem(position);
+
+                Intent intent = new Intent(VerDetalleSede.this, ElegirEstacionamiento.class);
+                intent.putExtra("empresaId", objEst.getEmpresaId());
+                intent.putExtra("estacionamientoId", objEst.getId());
+                intent.putExtra("estadoEstacionamiento", objEst.getEstado());
+                intent.putExtra("personaId", getIntent().getStringExtra("personaId"));
+                startActivity(intent);
             }
         });
     }
 
     private void getEstacionamientos() {
 
-        String empresaId = getIntent().getStringExtra("empresaId");
-        System.out.println(empresaId);
+        final String empresaId = getIntent().getStringExtra("empresaId");
 
+        reference.child("Empresa").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Empresa objEmp = new Empresa();
+                for(DataSnapshot item:snapshot.getChildren()) {
+                    Empresa e = item.getValue(Empresa.class);
+                    if (e.getId().equals(empresaId)) {
+                        objEmp = e;
+                        break;
+                    }
+                }
+                if (objEmp != null) {
+                    txtNombreEmpresa.setText(objEmp.getNombreLocal());
+                    txtRepresentanteEmpresa.setText(objEmp.getRepresentante());
+                    txtNiveles.setText(String.valueOf(objEmp.getNiveles()));
+                    txtHorario.setText(objEmp.getHorario());
+                    txtDireccion.setText(objEmp.getDireccion());
+                }
+            }
 
-        // Construct the data source - TEMPORAL
-        ArrayList<Estacionamiento> arrayOfEsts = new ArrayList<Estacionamiento>();
-        Estacionamiento est1 = new Estacionamiento();
-        est1.setCodEst("EST099");
-        est1.setTipo("TYPE554");
-        est1.setNivel("P1");
-        est1.setEstado("Disponible");
-        arrayOfEsts.add(est1);
-        est1 = new Estacionamiento();
-        est1.setCodEst("EST102");
-        est1.setTipo("TYPE554");
-        est1.setNivel("P1");
-        est1.setEstado("Disponible");
-        arrayOfEsts.add(est1);
-        est1 = new Estacionamiento();
-        est1.setCodEst("EST089");
-        est1.setTipo("TYPE554");
-        est1.setNivel("P1");
-        est1.setEstado("Disponible");
-        arrayOfEsts.add(est1);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
-        // Create the adapter to convert the array to views
-        EstacionamientosAdapter adapter = new EstacionamientosAdapter(this, arrayOfEsts);
-        // Attach the adapter to a ListView
-        lstEstacionamientos.setAdapter(adapter);
+        reference.child("Estacionamiento").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Estacionamiento> arrayOfEsts = new ArrayList<>();
+                for(DataSnapshot item:snapshot.getChildren()) {
+                    Estacionamiento e = item.getValue(Estacionamiento.class);
+                    if (e.getEmpresaId().equals(empresaId)) {
+                        arrayOfEsts.add(e);
+                    }
+                }
+                // Create the adapter to convert the array to views
+                EstacionamientosAdapter adapter = new EstacionamientosAdapter(VerDetalleSede.this, arrayOfEsts);
+                // Attach the adapter to a ListView
+                lstEstacionamientos.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     private void inicializarFirebase() {

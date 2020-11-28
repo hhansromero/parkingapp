@@ -145,6 +145,7 @@ public class BuscarEstacionamiento extends AppCompatActivity {
                         if (marker.getSnippet() != null) {
                             Intent intent = new Intent(BuscarEstacionamiento.this, VerDetalleSede.class);
                             intent.putExtra("empresaId", marker.getSnippet());
+                            intent.putExtra("personaId", getIntent().getStringExtra("personaId"));
                             startActivity(intent);
                         }
                         return false;

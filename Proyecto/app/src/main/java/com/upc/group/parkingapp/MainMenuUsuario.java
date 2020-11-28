@@ -30,6 +30,7 @@ public class MainMenuUsuario extends AppCompatActivity {
 
                 if(menuItem.getItemId() == R.id.menu_2) {
                     intent = new Intent(MainMenuUsuario.this, EstOpciones.class);
+                    intent.putExtra("personaId", getIntent().getStringExtra("personaId"));
                     startActivity(intent);
                 }
                 else if (menuItem.getItemId() == R.id.menu_3){
