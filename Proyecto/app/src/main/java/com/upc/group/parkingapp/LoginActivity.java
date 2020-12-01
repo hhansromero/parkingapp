@@ -30,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference reference;
     String tipoUsuario="";
     String personaId="";
+    String nombres="";
+    String apellidos="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         inicializarFirebase();
         asignarReferencias();
+
     }
 
     private void inicializarFirebase() {
@@ -54,9 +57,11 @@ public class LoginActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (txtUser.getText().toString().equals("") || txtPassword.getText().toString().equals("")) {
                     validarRequeridos();
                 } else {
+
                     loguearUsuario();
                 }
             }
@@ -85,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+
                 for(DataSnapshot item:snapshot.getChildren()) {
                     Persona p = item.getValue(Persona.class);
 
@@ -92,6 +98,11 @@ public class LoginActivity extends AppCompatActivity {
                             && p.getPassword().equals(txtPassword.getText().toString())) {
                         tipoUsuario = p.getTipoUsuario();
                         personaId = p.getId();
+
+                        //esto coloquè
+                        nombres = p.getNombres();
+                        apellidos = p.getApellidos();
+                        //hasta aqui coloqué
                         break;
                     }
                 }
@@ -101,8 +112,13 @@ public class LoginActivity extends AppCompatActivity {
                     intent = new Intent(LoginActivity.this, MainMenuAdmin.class);
                     startActivity(intent);
                 } else if (tipoUsuario.equals("C")) {
+
                     intent = new Intent(LoginActivity.this, MainMenuUsuario.class);
                     intent.putExtra("personaId", personaId);
+                    String dato = new String();
+                    dato= nombres+ " "+ apellidos;
+                    intent.putExtra("nombres", dato);
+
                     startActivity(intent);
                 } else if (tipoUsuario.equals("")) {
                     Toast.makeText(LoginActivity.this, "Usuario o Password incorrectos", Toast.LENGTH_SHORT).show();

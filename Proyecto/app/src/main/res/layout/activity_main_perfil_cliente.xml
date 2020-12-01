@@ -1,187 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainPerfilCliente">
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainPerfilCliente">
-        <FrameLayout
-            android:id="@+id/container"
+        android:layout_marginBottom="55dp">
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="20dp"
+            android:text="Configuración de Perfil"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtPlaca"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="55dp">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="55dp"
+            android:ems="10"
+            android:hint="Ingrese su placa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="310dp"
+            android:layout_marginEnd="200dp"
+            android:text="News:"
+            android:textSize="18dp" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="20dp"
-                android:text="Configuración de Perfil"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+        <CheckBox
+            android:id="@+id/cbE3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="310dp"
+            android:layout_marginEnd="50dp"
+            android:text="Email" />
 
-            <EditText
-                android:id="@+id/txtPlaca"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginEnd="55dp"
-                android:ems="10"
-                android:hint="Ingrese su placa"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <CheckBox
+            android:id="@+id/cbE2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginEnd="50dp"
+            android:text="Email" />
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="310dp"
-                android:layout_marginEnd="200dp"
-                android:text="News:"
-                android:textSize="18dp" />
+        <CheckBox
+            android:id="@+id/cbS1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginEnd="50dp"
+            android:text="SMS" />
 
-            <CheckBox
-                android:id="@+id/checkBox5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="310dp"
-                android:layout_marginEnd="50dp"
-                android:text="Email" />
+        <CheckBox
+            android:id="@+id/cbS2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginEnd="50dp"
+            android:text="SMS" />
 
-            <CheckBox
-                android:id="@+id/checkBox3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="280dp"
-                android:layout_marginEnd="50dp"
-                android:text="Email" />
+        <CheckBox
+            android:id="@+id/cbS3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="310dp"
+            android:layout_marginEnd="50dp"
+            android:text="SMS" />
 
-            <CheckBox
-                android:id="@+id/checkBox1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="280dp"
-                android:layout_marginTop="250dp"
-                android:layout_marginEnd="50dp"
-                android:text="SMS" />
+        <CheckBox
+            android:id="@+id/cbE1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginEnd="50dp"
+            android:text="Email" />
 
-            <CheckBox
-                android:id="@+id/checkBox4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="280dp"
-                android:layout_marginTop="280dp"
-                android:layout_marginEnd="50dp"
-                android:text="SMS" />
+        <Button
+            android:id="@+id/btnGuarda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="380dp"
+            android:layout_marginEnd="55dp"
+            android:background="@color/colorPrimary"
+            android:text="Guardar"
+            android:textColor="@color/buttonLetter"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cbS3" />
 
-            <CheckBox
-                android:id="@+id/checkBox6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="280dp"
-                android:layout_marginTop="310dp"
-                android:layout_marginEnd="50dp"
-                android:text="SMS" />
+        <EditText
+            android:id="@+id/txtFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="220dp"
+            android:ems="10"
+            android:hint="Foto de perfil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="250dp"
-                android:layout_marginEnd="50dp"
-                android:text="Email" />
+        <EditText
+            android:id="@+id/txtModelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="55dp"
+            android:ems="10"
+            android:hint="Marca y modelo de auto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/btnGuarda"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="380dp"
-                android:layout_marginEnd="55dp"
-                android:background="@color/colorPrimary"
-                android:text="Guardar"
-                android:textColor="@color/buttonLetter"
-                android:textSize="22sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/checkBox6" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="140dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginEnd="100dp"
+            app:srcCompat="@drawable/ic_photo" />
 
-            <EditText
-                android:id="@+id/txtFoto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="130dp"
-                android:layout_marginEnd="220dp"
-                android:ems="10"
-                android:hint="Foto de perfil"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notificaciones:"
+            android:layout_marginTop="200dp"
+            android:layout_marginStart="55dp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="25dp"/>
 
-            <EditText
-                android:id="@+id/txtModelo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:layout_marginStart="55dp"
-                android:layout_marginEnd="55dp"
-                android:ems="10"
-                android:hint="Modelo de auto"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicio de sesión:"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="220dp"
+            android:layout_marginTop="250dp"
+            android:textSize="18dp"/>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:layout_marginTop="140dp"
-                android:layout_marginStart="200dp"
-                android:layout_marginEnd="100dp"
-                app:srcCompat="@drawable/ic_photo" />
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15 minutos antes:"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="200dp"
+            android:layout_marginTop="280dp"
+            android:textSize="18dp"/>
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Notificaciones:"
-                android:layout_marginTop="200dp"
-                android:layout_marginStart="55dp"
-                android:textStyle="bold"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="25dp"/>
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Inicio de sesión:"
-                android:layout_marginStart="55dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginTop="250dp"
-                android:textSize="18dp"/>
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="15 minutos antes:"
-                android:layout_marginStart="55dp"
-                android:layout_marginEnd="200dp"
-                android:layout_marginTop="280dp"
-                android:textSize="18dp"/>
-
-        </FrameLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
