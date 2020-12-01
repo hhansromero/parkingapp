@@ -33,6 +33,8 @@ public class ElegirEstacionamiento extends AppCompatActivity {
 
     String empresaId;
     String estacionamientoId;
+    String personaId;
+    boolean tieneReservas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,27 +82,33 @@ public class ElegirEstacionamiento extends AppCompatActivity {
         btnElegir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                personaId = getIntent().getStringExtra("personaId");
 
-                String estadoEstacionamiento = getIntent().getStringExtra("estadoEstacionamiento");
-                if (estadoEstacionamiento.equals("Disponible")) {
-                    String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                    Reserva reserva = new Reserva();
-                    reserva.setId(UUID.randomUUID().toString());
-                    reserva.setEstacionamientoId(estacionamientoId);
-                    reserva.setPersonaId(getIntent().getStringExtra("personaId"));
-                    reserva.setFechaHoraInicio(currentDateTimeString);
-                    reserva.setEstado("Ocupado");
+                validarReservasPrevias();
+                if (!tieneReservas) {
+                    String estadoEstacionamiento = getIntent().getStringExtra("estadoEstacionamiento");
+                    if (estadoEstacionamiento.equals("Disponible")) {
+                        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                        Reserva reserva = new Reserva();
+                        reserva.setId(UUID.randomUUID().toString());
+                        reserva.setEstacionamientoId(estacionamientoId);
+                        reserva.setPersonaId(personaId);
+                        reserva.setFechaHoraInicio(currentDateTimeString);
+                        reserva.setEstado("Ocupado");
 
-                    reference.child("Reserva").child(reserva.getId()).setValue(reserva);
-                    reference.child("Estacionamiento").child(estacionamientoId).child("estado").setValue("Ocupado");
+                        reference.child("Reserva").child(reserva.getId()).setValue(reserva);
+                        reference.child("Estacionamiento").child(estacionamientoId).child("estado").setValue("Ocupado");
 
-                    Toast.makeText(ElegirEstacionamiento.this, "¡Estacionamiento ocupado en Parkink App!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ElegirEstacionamiento.this, "¡Reserva generada en Parkink App!", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(ElegirEstacionamiento.this, VerDetalleSede.class);
-                    intent.putExtra("empresaId", empresaId);
-                    startActivity(intent);
+                        Intent intent = new Intent(ElegirEstacionamiento.this, VerDetalleSede.class);
+                        intent.putExtra("empresaId", empresaId);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ElegirEstacionamiento.this, "Debe elegir un estacionmiento en estado Disponible", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(ElegirEstacionamiento.this, "Debe elegir un estacionmiento en estado Disponible", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ElegirEstacionamiento.this, "Estimado usuario, Ud ya tiene un estacionamiento ocupado", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -116,6 +124,30 @@ public class ElegirEstacionamiento extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void validarReservasPrevias() {
+        reference.child("Reserva").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Reserva objR = null;
+                for(DataSnapshot item:snapshot.getChildren()) {
+                    Reserva r = item.getValue(Reserva.class);
+                    if (r.getPersonaId().equals(personaId)) {
+                        objR = r;
+                        break;
+                    }
+                }
+                if (objR != null) {
+                    tieneReservas = true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void inicializarFirebase() {

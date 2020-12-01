@@ -34,5 +34,14 @@ public class EstOpciones extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnLiberarEstacionamiento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EstOpciones.this, LiberarEstacionamiento.class);
+                intent.putExtra("personaId", getIntent().getStringExtra("personaId"));
+                startActivity(intent);
+            }
+        });
     }
 }

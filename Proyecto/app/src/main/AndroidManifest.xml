@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ElegirEstacionamiento"></activity>
+        <activity android:name=".LiberarEstacionamiento" android:parentActivityName=".EstOpciones"></activity>
+        <activity android:name=".ElegirEstacionamiento" />
         <activity android:name=".MapEmpresasActivity" />
         <activity android:name=".ListarEmpresasFBActivity" />
         <activity
