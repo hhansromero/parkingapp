@@ -32,6 +32,11 @@ public class MainMenuAdmin extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+                if(menuItem.getItemId() == R.id.menu_3) {
+                    intent = new Intent(MainMenuAdmin.this, MainMenuCochera.class);
+                    startActivity(intent);
+                }
+
                 return false;
             }
         });

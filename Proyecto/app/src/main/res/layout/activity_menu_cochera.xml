@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenuCochera"
+    android:layout_margin="30dp">
+
+    <Button
+        android:id="@+id/btnIngresoCliente"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button_rouded"
+        android:drawableLeft="@drawable/ic_car_brandom"
+        android:text="Ingreso cliente"
+        android:textColor="@color/buttonLetter"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSalidaCliente"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_rouded"
+        android:drawableLeft="@drawable/ic_car_brandom"
+        android:text="Salida cliente"
+        android:textColor="@color/buttonLetter"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIngresoCliente" />
+
+    <Button
+        android:id="@+id/btnBuscarCliente"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_rouded"
+        android:drawableLeft="@drawable/ic_buscar_user_brandom"
+        android:text="Buscar Cliente"
+        android:textColor="@color/buttonLetter"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSalidaCliente" />
+</androidx.constraintlayout.widget.ConstraintLayout>
