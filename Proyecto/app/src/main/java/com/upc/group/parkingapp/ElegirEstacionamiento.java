@@ -41,6 +41,8 @@ public class ElegirEstacionamiento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elegir_estacionamiento);
         inicializarFirebase();
+        personaId = getIntent().getStringExtra("personaId");
+        System.out.println("persona:::: "+ personaId);
         getEstacionamiento();
         asignarReferencias();
     }
@@ -82,7 +84,6 @@ public class ElegirEstacionamiento extends AppCompatActivity {
         btnElegir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                personaId = getIntent().getStringExtra("personaId");
 
                 validarReservasPrevias();
                 if (!tieneReservas) {
